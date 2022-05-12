@@ -15,6 +15,9 @@ app.use(morgan("dev"));
 // Connection a la BBD
 // mongoose.connect("");
 
+app.get("/", (req, res) => {
+  res.status(200).json("Welcome ! take the direction on the road /comics ");
+});
 // COMICS
 app.get("/comics", async (req, res) => {
   console.log(req.query);
