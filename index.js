@@ -15,8 +15,6 @@ app.use(morgan("dev"));
 // Connection a la BBD
 // mongoose.connect("");
 
-const key = "25X1jqbxa9zMD38f";
-
 // COMICS
 app.get("/comics", async (req, res) => {
   console.log(req.query);
