@@ -70,6 +70,6 @@ app.all("*", (req, res) => {
   res.status(400).json("Route introuvable !");
 });
 
-app.listen(4000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server has started ! ");
 });
