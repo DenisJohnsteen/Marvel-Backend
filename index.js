@@ -13,7 +13,7 @@ app.use(cors());
 app.use(morgan("dev"));
 
 // Connection a la BBD
-mongoose.connect("mongodb://localhost/marvel");
+mongoose.connect(process.env.MONGODBURL);
 
 // import des routes
 const userRoutes = require("./routes/users");
