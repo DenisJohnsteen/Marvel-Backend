@@ -19,9 +19,9 @@ mongoose.connect("mongodb://localhost/marvel");
 const userRoutes = require("./routes/users");
 app.use(userRoutes);
 
-// app.get("/", (req, res) => {
-//   res.status(200).json("Welcome ! take the direction on the road /comics ");
-// });
+app.get("/", (req, res) => {
+  res.status(200).json("Welcome ! take the direction on the road /comics ");
+});
 // COMICS
 app.get("/comics", async (req, res) => {
   console.log(req.query);
