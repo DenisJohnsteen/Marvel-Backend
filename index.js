@@ -1,6 +1,6 @@
 const express = require("express");
 const formidableMiddleware = require("express-formidable");
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 require("dotenv").config();
 const cors = require("cors");
 const axios = require("axios");
@@ -13,11 +13,15 @@ app.use(cors());
 app.use(morgan("dev"));
 
 // Connection a la BBD
-// mongoose.connect("");
+mongoose.connect("mongodb://localhost/marvel");
 
-app.get("/", (req, res) => {
-  res.status(200).json("Welcome ! take the direction on the road /comics ");
-});
+// import des routes
+const userRoutes = require("./routes/users");
+app.use(userRoutes);
+
+// app.get("/", (req, res) => {
+//   res.status(200).json("Welcome ! take the direction on the road /comics ");
+// });
 // COMICS
 app.get("/comics", async (req, res) => {
   console.log(req.query);
@@ -60,8 +64,13 @@ app.get("/characters", async (req, res) => {
 });
 
 app.get("/character/:characterId", async (req, res) => {
-  console.log(req.query);
+  console.log(req.params.characterId);
   try {
+    const response = await axios.get(
+      `https://lereacteur-marvel-api.herokuapp.com/character/${req.params.characterId}?apiKey=${process.env.MARVEL_API_KEY}`
+    );
+    // console.log(response.data);
+    res.json(response.data);
   } catch (error) {
     res.status(400).json(error.message);
   }
